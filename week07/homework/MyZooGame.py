@@ -43,21 +43,28 @@ class Dog(Cat):
 
 
 class Zoo(object):
-    total_animal={}
+    all_animal={}
 
     def __init__(self,name):
         self.name=name
 
     def add_animal(self,instance):
-        if id(instance) == self.total_animal[instance]:
+        if instance not in self.all_animal:
+            self.all_animal[instance]=id(instance)
+        else:
             return "already got this animal"
-        self.total_animal[instance]=id(instance)
+            
+    # def add_animal(self,instance):
+    #     if id(instance) == self.total_animal[instance]:
+    #         return "already got this animal"
+    #     else:
+    #         self.total_animal[instance]=id(instance)
 
 def hasattr(zoo,instance):
-    if zoo.total_animal.get(instance):
+    if zoo.all_animal.get(instance):
         return True
     else:
-        return "not exist"
+        return False
 
 
 if __name__ == '__main__':
